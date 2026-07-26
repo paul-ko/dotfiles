@@ -9,3 +9,4 @@
 - rust: rustup.rs
 - selene: cargo - --no-default-features
 - nerd fonts: https://www.nerdfonts.com/font-downloads
+- treesitter: cargo
