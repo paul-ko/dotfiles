@@ -1,3 +1,6 @@
+[user]
+    email = pmkoenig@gmail.com
+    name = Paul K
 [color]
     branch = auto
     diff = auto
@@ -19,7 +22,7 @@
 [push]
     recurseSubmodules = check
 [merge]
-	tool = meld
+    tool = meld
 # Set the path to meld as
 # [mergetool "meld"]
 # 	path = <path>
