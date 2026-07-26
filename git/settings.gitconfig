@@ -18,7 +18,7 @@
     defaultBranch = main
 [pretty]
     date = %D
-    concise = "%C(#bd93f9)%h %C(#50fa7b) %ci %C(#ff79c6) %an %C(auto) %n╘%d %s%n"
+    concise = "%n%C(#bd93f9)%h %C(#50fa7b) %ci %C(#ff79c6) %an %C(auto) %n╘%d %s"
 [push]
     recurseSubmodules = check
 [merge]
