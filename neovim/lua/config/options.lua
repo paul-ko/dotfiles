@@ -38,3 +38,6 @@ vim.filetype.add({
 -- Directory tree; stay out of the way of nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- Rendering
+vim.opt.termguicolors = true
