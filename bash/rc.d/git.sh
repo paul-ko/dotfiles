@@ -20,3 +20,5 @@ ghome() {
     cd "$(git rev-parse --show-toplevel)" || return
 }
 
+# @help pca: run pre-commit against all files
+alias pca="pre-commit run --all-files"

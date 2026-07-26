@@ -1,2 +1,5 @@
 std = "lua51+vim"
-exclude = ["neovim/lua/plugins/*"]
+# exclude = ["neovim/lua/plugins/*"]
+
+[lints]
+mixed_table = "allow"
