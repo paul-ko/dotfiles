@@ -11,3 +11,10 @@ repos:
     hooks:
     - id: shellcheck
       args: ["--severity=warning"]
+  - repo: local
+    hooks:
+      - id: stylua
+        name: format lua files with stylua
+        language: unsupported
+        entry: stylua
+        types: [lua]

@@ -5,8 +5,11 @@
 - neovim: nvim
   - available via apt, but version too old
 
+## Cargo
+- selene: specify --no-default-features
+- treesitter
+- stylua
+
 ## Other
 - rust: rustup.rs
-- selene: cargo - --no-default-features
 - nerd fonts: https://www.nerdfonts.com/font-downloads
-- treesitter: cargo
