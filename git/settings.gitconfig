@@ -11,6 +11,11 @@
 [core]
     editor = nvim
     safecrlf = false
+    pager = delta  # requires installing git-delta (i.e., from apt)
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
 [grep]
     fallbackToNoIndex = true
     patternType = perl
@@ -22,6 +27,7 @@
 [push]
     recurseSubmodules = check
 [merge]
+    conflictStyle = zdiff3
     tool = meld
 # Set the path to meld as
 # [mergetool "meld"]
