@@ -1,22 +1,16 @@
 ; git config --global include.path <path-to-this-file>
 [alias]
     ; Null tree
-    diff-null = \
-      !git diff $(git hash-null)
-    hash-null = \
-      hash-object -t tree /dev/null
+    diff-null = !git diff $(git hash-null)
+    hash-null = hash-object -t tree /dev/null
 
     ; Log
-    last = \
-      log -1 HEAD
-    l = \
-      "log --oneline"
-    lc = \
-      "log --format=concise"
+    last = log -1 HEAD
+    l = log --oneline
+    lc = log --format=concise
 
     ; Diffs
-    ds = \
-      "diff --staged"
+    ds = diff --staged
 
     ; Aliases
     get-alias = \
@@ -39,5 +33,4 @@
       grep --break --heading --line-number -I
 
     ; Misc
-    origin-url = \
-      "!git remote show origin | grep -oP '(?<=Fetch URL: ).*'"
+    origin-url = !git remote show origin | grep -oP '(?<=Fetch URL: ).*'
