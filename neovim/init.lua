@@ -2,7 +2,12 @@
 See
   - https://neovim.io/doc/user/lua-guide/
   - https://github.com/jdhao/nvim-config
+  - https://lazy.folke.io/
 ]]
+
+-- Have to set the mapleader before loading lazy
+vim.g.mapleader=","
+require("config.lazy")
 
 vim.filetype.add({
   extension = {
@@ -26,7 +31,6 @@ vim.opt.showcmd=true             -- show command in bottom bar
 vim.opt.showmatch=true           -- highlight matching [{()}] 
 
 -- Leader shortcuts
-vim.g.mapleader=","
 vim.keymap.set("i", "jk", "<ESC>")
 
 -- Searching
