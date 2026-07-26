@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: selene
+        name: lint lua files with selene
+        language: unsupported
+        entry: selene
+        types: [lua]

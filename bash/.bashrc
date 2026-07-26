@@ -19,3 +19,4 @@ _source_if_exists "${_BASH_CFG}/core.sh"
 for f in "${_BASH_RCD}"/*.sh; do
     _source_if_exists "$f"
 done
+. "$HOME/.cargo/env"
