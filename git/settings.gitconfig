@@ -9,7 +9,7 @@
     status = auto
     ui = true
 [core]
-    editor = vim
+    editor = nvim
     safecrlf = false
 [grep]
     fallbackToNoIndex = true
