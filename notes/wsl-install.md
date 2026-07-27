@@ -4,6 +4,9 @@
 - uv: astral-uv
 - neovim: nvim
   - available via apt, but version too old
+- bash-language-server
+  - sudo snap install bash-language-server --classic
+  - Shellcheck diagnostics, shell autocomplete
 
 ## Cargo
 - selene: specify --no-default-features

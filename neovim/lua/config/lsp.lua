@@ -39,6 +39,7 @@ vim.lsp.config("pyright", {
 })
 vim.lsp.enable({ "pyright" })
 
+-- -- https://docs.astral.sh/ruff/editors/setup/#neovim
 -- https://docs.astral.sh/ruff/editors/setup/#neovim
 vim.lsp.config("ruff", {
   init_options = {
@@ -48,3 +49,5 @@ vim.lsp.config("ruff", {
   },
 })
 vim.lsp.enable("ruff")
+
+vim.lsp.enable("bashls")
