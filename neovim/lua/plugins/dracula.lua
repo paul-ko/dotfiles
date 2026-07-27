@@ -69,13 +69,15 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    opts = {
-      options = {
-        theme = vim.g.colors_name,
-        refresh = {
-          statusline = 1000,
+    opts = function()
+      return {
+        options = {
+          theme = vim.g.colors_name,
+          refresh = {
+            statusline = 1000,
+          },
         },
-      },
-    },
+      }
+    end,
   },
 }
