@@ -13,8 +13,8 @@ gv() {
 gcd() {
     local root dir
     root=$(git rev-parse --show-toplevel) || return
-    dir=$(git -C "$root" ls-files | xargs -n1 dirname | sort -u \
-        | fzf --query "$1" --preview "ls --color=always $root/{}")
+    dir=$(git -C "$root" ls-files | xargs -n1 dirname | sort -u |
+        fzf --query "$1" --preview "ls --color=always $root/{}")
     if [ -n "$dir" ]; then
         cd "$root/$dir" || return
     fi

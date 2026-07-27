@@ -17,3 +17,5 @@
 - rust: rustup.rs
 - nerd fonts: https://www.nerdfonts.com/font-downloads
 - ruff: `uv tool install ruff@latest`
+- go: https://go.dev/doc/install
+- shfmt: `go install mvdan.cc/sh/v3/cmd/shfmt@latest`
