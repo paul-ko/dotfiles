@@ -1,3 +1,4 @@
+-- https://cmp.saghen.dev/configuration/general.html
 return {
   {
     "saghen/blink.cmp",
@@ -37,12 +38,23 @@ return {
       -- (Default) Only show the documentation popup when manually triggered
       completion = { documentation = { auto_show = false } },
 
-      -- Default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
-      },
+        default = function()
+          local cursor = vim.api.nvim_win_get_cursor(0)
+          local row, col = cursor[1] - 1, cursor[2]
+          if vim.api.nvim_get_mode().mode == "i" then
+            col = math.max(col - 1, 0)
+          end
+          local node = vim.treesitter.get_node({ pos = { row, col } })
 
+          if
+            node and vim.tbl_contains({ "comment", "line_comment", "block_comment", "comment_content" }, node:type())
+          then
+            return {}
+          end
+          return { "lsp", "path", "snippets", "buffer" }
+        end,
+      },
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
       -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
       -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
