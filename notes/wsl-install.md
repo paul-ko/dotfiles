@@ -13,3 +13,4 @@
 ## Other
 - rust: rustup.rs
 - nerd fonts: https://www.nerdfonts.com/font-downloads
+- ruff: `uv tool install ruff@latest`
