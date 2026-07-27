@@ -25,5 +25,12 @@ ghome() {
     cd "$(git rev-parse --show-toplevel)" || return
 }
 
+# @help grg: ripgrep in the current repo
+grg() {
+    local root
+    root=$(git rev-parse --show-toplevel) || return
+    (cd "$root" && rg "$@")
+}
+
 # @help pca: run pre-commit against all files
 alias pca="pre-commit run --all-files"
