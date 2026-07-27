@@ -11,6 +11,10 @@
 
     ; Diffs
     ds = diff --staged
+    dc = \
+        "!f() { " \
+        "  git diff \"$@\" | cat; " \
+        "}; f"
 
     ; Aliases
     get-alias = \
