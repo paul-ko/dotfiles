@@ -26,6 +26,7 @@ vim.opt.foldmethod = "indent" -- fold based on indent level
 
 -- Other
 vim.opt.colorcolumn = "89" -- visual ruler based on black settings
+vim.opt.cursorline = true -- visually highlight current line in active buffer
 
 -- Filetypes
 vim.filetype.add({
