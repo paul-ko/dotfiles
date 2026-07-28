@@ -1,11 +1,12 @@
 # neovim configs
 
-## Principles
+## Setting options
+### Principles
 - ftplugins should avoid `vim.o` (`vim.opt`); instead, use `vim.opt_local`, `vim.bo`, or
   `vim.wo`.
 - Similarly, they should pass `{ buffer = true }` when setting keymaps.
 
-## Config setters
+### Setter functions
 See [local-options help](https://neovim.io/doc/user/options/#local-options) for details.
 
 - `vim.o`: use when you want the config to be applied to be applied as broadly as
@@ -20,3 +21,7 @@ See [local-options help](https://neovim.io/doc/user/options/#local-options) for 
     - Note that for window configs, new windows created by splitting the current window
       will still inherit values set this way.
 
+## Autocmds
+### Principles
+- Always add to a group that has has `{ clear = true }` as its second arg so re-sourcing
+  the config doesn't add a duplicate copy of the autocmd.

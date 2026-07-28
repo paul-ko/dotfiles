@@ -14,6 +14,7 @@ end, { desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>D", vim.diagnostic.setqflist, { desc = "All diagnostics (quickfix)" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp_attach_add_keymaps", { clear = true }),
   callback = function(args)
     local bufnr = args.buf
     local map = function(mode, lhs, rhs, desc)
