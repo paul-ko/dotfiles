@@ -8,27 +8,11 @@ return {
     ---@diagnostic disable: missing-fields
     opts = {},
     ---@diagnostic enable: missing-fields
-    config = function()
-      vim.keymap.set(
-        "n",
-        "<leader>f", -- project files
-        "<cmd>lua require('fzf-lua').files()<cr>"
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>g", -- project text
-        "<cmd>lua require('fzf-lua').live_grep_native()<cr>"
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>r", -- project text for selected word
-        "<cmd>lua require('fzf-lua').grep_cword()<cr>"
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>R", -- project text for selected WORD
-        "<cmd>lua require('fzf-lua').grep_cWORD()<cr>"
-      )
-    end,
+    keys = {
+      { "<leader>f", "<cmd>lua require('fzf-lua').files()<cr>", desc = "fuzzy-find project files" },
+      { "<leader>g", "<cmd>lua require('fzf-lua').live_grep_native()<cr>", desc = "live-grep project files" },
+      { "<leader>r", "<cmd>lua require('fzf-lua').grep_cword()<cr>", desc = "grep current word within project" },
+      { "<leader>R", "<cmd>lua require('fzf-lua').grep_cWORD()<cr>", desc = "grep current WORD within project" },
+    },
   },
 }

@@ -26,7 +26,6 @@ return {
           ---@type dracula.palette
           return {
             -- override or create new colors
-            mycolor = "#ffffff",
             -- mycolor = 0xffffff,
           }
         end,
@@ -35,7 +34,7 @@ return {
           ---@type dracula.highlights
           return {
             ---@type vim.api.keyset.highlight
-            Normal = { fg = colors.mycolor },
+            -- Normal = { fg = colors.mycolor },
           }
         end,
         plugins = {
@@ -64,7 +63,6 @@ return {
         },
       })
       vim.cmd.colorscheme("dracula")
-      vim.cmd.colorscheme("dracula-soft")
     end,
   },
   {

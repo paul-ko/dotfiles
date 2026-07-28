@@ -1,3 +1,5 @@
+-- If a desire arises to customize or extend this, strongly consider checking
+-- conform.nvim as potentially more standard current plugin for the same purpose.
 return {
   {
     "sbdchd/neoformat",
