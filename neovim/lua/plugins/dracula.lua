@@ -70,6 +70,7 @@ return {
     opts = function()
       return {
         options = {
+          ignore_focus = { "NvimTree" },
           theme = vim.g.colors_name,
           refresh = {
             statusline = 1000,
