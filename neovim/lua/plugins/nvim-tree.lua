@@ -35,7 +35,7 @@ return {
         },
         filters = {
           -- true *hides*
-          dotfiles = true,
+          dotfiles = false,
         },
         on_attach = my_on_attach,
       }
