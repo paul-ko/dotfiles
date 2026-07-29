@@ -1,0 +1,51 @@
+scope,setter,option,value,check,global_before,global_after,effective_value,status,error
+local to window,wo,cursorline,true,tabnew,false,true,true,ok,
+local to window,wo,cursorline,true,enew,false,true,true,ok,
+local to window,bo,cursorline,true,tabnew,false,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:42: 'buf' cannot be passed for window-local option 'cursorline'
+local to window,bo,cursorline,true,enew,false,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:42: 'buf' cannot be passed for window-local option 'cursorline'
+local to window,o,cursorline,true,tabnew,false,true,true,ok,
+local to window,o,cursorline,true,enew,false,true,true,ok,
+local to window,opt_local,cursorline,true,tabnew,false,false,false,ok,
+local to window,opt_local,cursorline,true,enew,false,false,true,ok,
+local to window,go,cursorline,true,tabnew,false,true,true,ok,
+local to window,go,cursorline,true,enew,false,true,false,ok,
+global or local to buffer,wo,path,".,,**",tabnew,".,,",N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:41: 'win' cannot be passed for global buffer-local option 'path'
+global or local to buffer,wo,path,".,,**",enew,".,,",N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:41: 'win' cannot be passed for global buffer-local option 'path'
+global or local to buffer,bo,path,".,,**",tabnew,".,,",".,,",".,,",ok,
+global or local to buffer,bo,path,".,,**",enew,".,,",".,,",".,,",ok,
+global or local to buffer,o,path,".,,**",tabnew,".,,",".,,**",".,,**",ok,
+global or local to buffer,o,path,".,,**",enew,".,,",".,,**",".,,**",ok,
+global or local to buffer,opt_local,path,".,,**",tabnew,".,,",".,,",".,,",ok,
+global or local to buffer,opt_local,path,".,,**",enew,".,,",".,,",".,,",ok,
+global or local to buffer,go,path,".,,**",tabnew,".,,",".,,**",".,,**",ok,
+global or local to buffer,go,path,".,,**",enew,".,,",".,,**",".,,**",ok,
+global or local to window,wo,scrolloff,1,tabnew,0,0,0,ok,
+global or local to window,wo,scrolloff,1,enew,0,0,1,ok,
+global or local to window,bo,scrolloff,1,tabnew,0,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:42: 'buf' cannot be passed for global window-local option 'scrolloff'
+global or local to window,bo,scrolloff,1,enew,0,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:42: 'buf' cannot be passed for global window-local option 'scrolloff'
+global or local to window,o,scrolloff,1,tabnew,0,1,1,ok,
+global or local to window,o,scrolloff,1,enew,0,1,1,ok,
+global or local to window,opt_local,scrolloff,1,tabnew,0,0,0,ok,
+global or local to window,opt_local,scrolloff,1,enew,0,0,1,ok,
+global or local to window,go,scrolloff,1,tabnew,0,1,1,ok,
+global or local to window,go,scrolloff,1,enew,0,1,1,ok,
+local to buffer,wo,copyindent,true,tabnew,false,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:41: 'win' cannot be passed for buffer-local option 'copyindent'
+local to buffer,wo,copyindent,true,enew,false,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:41: 'win' cannot be passed for buffer-local option 'copyindent'
+local to buffer,bo,copyindent,true,tabnew,false,false,false,ok,
+local to buffer,bo,copyindent,true,enew,false,false,false,ok,
+local to buffer,o,copyindent,true,tabnew,false,true,true,ok,
+local to buffer,o,copyindent,true,enew,false,true,true,ok,
+local to buffer,opt_local,copyindent,true,tabnew,false,false,false,ok,
+local to buffer,opt_local,copyindent,true,enew,false,false,false,ok,
+local to buffer,go,copyindent,true,tabnew,false,true,true,ok,
+local to buffer,go,copyindent,true,enew,false,true,true,ok,
+global,wo,confirm,true,tabnew,false,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:41: 'win' cannot be passed for global option 'confirm'
+global,wo,confirm,true,enew,false,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:41: 'win' cannot be passed for global option 'confirm'
+global,bo,confirm,true,tabnew,false,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:42: 'buf' cannot be passed for global option 'confirm'
+global,bo,confirm,true,enew,false,N/A,N/A,error,.../pmkoe/git/dot-files/test/neovim/options/test-option.lua:42: 'buf' cannot be passed for global option 'confirm'
+global,o,confirm,true,tabnew,false,true,true,ok,
+global,o,confirm,true,enew,false,true,true,ok,
+global,opt_local,confirm,true,tabnew,false,true,true,ok,
+global,opt_local,confirm,true,enew,false,true,true,ok,
+global,go,confirm,true,tabnew,false,true,true,ok,
+global,go,confirm,true,enew,false,true,true,ok,
