@@ -5,6 +5,7 @@ return {
     build = ":TSUpdate",
     branch = "main",
     config = function()
+      -- TODO: don't use the same variable for both calls as the values don't always align.
       local parsers = { "python", "lua", "vim", "json", "yaml", "toml" }
       require("nvim-treesitter").install(parsers)
 

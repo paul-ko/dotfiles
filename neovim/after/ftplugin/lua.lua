@@ -3,4 +3,5 @@ vim.bo.shiftwidth = 2
 vim.bo.tabstop = 2
 vim.bo.softtabstop = 2
 vim.bo.expandtab = true
-vim.opt.formatoptions:remove({ "r", "o" })
+vim.opt_local.formatoptions:remove({ "r", "o" })
+vim.opt_local.colorcolumn = "121"
