@@ -12,8 +12,12 @@ return {
 
     version = "1.*", -- Pin major version as of setup.
     opts = {
-      -- See :h blink-cmp-config-keymap for defining your own keymap
-      keymap = { preset = "super-tab" },
+      keymap = {
+        -- https://cmp.saghen.dev/configuration/keymap.html
+        preset = "super-tab",
+        -- ENTER accepts in addition to preset TAB.
+        ["<CR>"] = { "accept", "fallback" },
+      },
 
       appearance = {
         nerd_font_variant = "mono",
