@@ -1,4 +1,10 @@
--- https://cmp.saghen.dev/configuration/general.html
+--[[
+Useful docs:
+
+- Some key configs (opts): https://cmp.saghen.dev/configuration/general.html
+- Full configs (opts): https://cmp.saghen.dev/configuration/reference.html
+- config recipes: https://cmp.saghen.dev/recipes.html
+]]
 return {
   {
     "saghen/blink.cmp",
@@ -13,10 +19,10 @@ return {
         nerd_font_variant = "mono",
       },
 
-      -- (Default) Only show the documentation popup when manually triggered
-      completion = { documentation = { auto_show = false } },
+      completion = { documentation = { auto_show = true } },
 
       sources = {
+        -- Set min_keyword_length to a number to control how many chars must be typed before matches display
         default = function()
           local cursor = vim.api.nvim_win_get_cursor(0)
           local row, col = cursor[1] - 1, cursor[2]
@@ -24,13 +30,18 @@ return {
             col = math.max(col - 1, 0)
           end
           local node = vim.treesitter.get_node({ pos = { row, col } })
+          local comment_node_types = {
+            "comment",
+            "line_comment",
+            "block_comment",
+            "comment_content",
+            "string_content", -- python docstrngs are string_content, but this has a wider blast radius
+          }
 
-          if
-            node and vim.tbl_contains({ "comment", "line_comment", "block_comment", "comment_content" }, node:type())
-          then
+          if node and vim.tbl_contains(comment_node_types, node:type()) then
             return {}
           end
-          return { "lsp", "path", "snippets", "buffer" }
+          return { "lsp", "path", "snippets" }
         end,
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },

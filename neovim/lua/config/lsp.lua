@@ -31,7 +31,8 @@ vim.lsp.config("pyright", {
     python = {
       analysis = {
         -- Ignore all files for analysis to exclusively use Ruff for linting
-        -- They provide non-overlapping feedback so I think it's best to have them both ignore = { '*' },
+        -- They provide non-overlapping feedback so I think it's best to have them both
+        -- ignore = { '*' },
       },
     },
   },

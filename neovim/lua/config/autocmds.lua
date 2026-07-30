@@ -7,8 +7,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
     map("n", "gr", vim.lsp.buf.references, "References")
-    map("n", "K", vim.lsp.buf.hover, "Hover")
-    map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
   end,
   desc = "LSP: configure basic keymaps",
 })
@@ -21,9 +19,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
     if client.name == "ruff" then
+      -- Suggested in https://docs.astral.sh/ruff/editors/setup/#neovim
       -- Disable hover in favor of Pyright
       client.server_capabilities.hoverProvider = false
     end
   end,
-  desc = "LSP: Disable hover capability from Ruff",
+  desc = "LSP: Disable hover capability from Ruff (to make way for pyright's)",
 })
