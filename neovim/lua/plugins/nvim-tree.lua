@@ -43,7 +43,7 @@ return {
         on_attach = my_on_attach,
       }
       require("nvim-tree").setup(config)
-      vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>")
+      vim.keymap.set("n", "<leader>te", "<cmd>NvimTreeToggle<cr>")
     end,
   },
 }

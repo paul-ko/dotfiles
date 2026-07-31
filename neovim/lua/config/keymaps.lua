@@ -15,5 +15,5 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 
 -- Diagnostic navigation — works for any diagnostic source (LSP, nvim-lint, etc.)
 -- so these are global, not gated behind LspAttach.
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Line diagnostics" })
-vim.keymap.set("n", "<leader>D", vim.diagnostic.setqflist, { desc = "All diagnostics (quickfix)" })
+vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float, { desc = "Line diagnostics" })
+vim.keymap.set("n", "<leader>da", vim.diagnostic.setqflist, { desc = "All diagnostics (quickfix)" })

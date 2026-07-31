@@ -1,0 +1,21 @@
+# Keymaps
+
+## Where to define
+- If specific to an attach hook, define where that attach hook lives.  Examples:
+  - autocmd.lua should contain autocmd's that define keymaps
+  - `[plugin].lua` should contain keymaps specific to `[plugin]`'s attach hooks
+- If executing the keymap should trigger a plugin to be lazily loaded, define in that
+  plugin's `keys =` field to enable lazy.nvim
+  to lazily define them when needed
+- Otherwise, define in keymaps.lua
+- `desc` option field should contain a clear description in its first 33 characters
+  (fzf-lua `keymaps()` constraint)
+
+## Grouping
+Keymaps are organized using grouping, where keymaps related to a specific concern share the same starting character.  This improves discoverability, particularly with which-key installed.  <!-- The grouping `<leader>[group][key]`, where `[group]` is a single character identifying the  -->
+
+### Groups
+- `<leader>d`: diagnostics
+- `<leader>g`: git
+- `<leader>s`: searches
+- `<leader>t`: nvim-tree [tentative]

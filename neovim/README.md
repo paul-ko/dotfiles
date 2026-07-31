@@ -57,18 +57,6 @@ See [local-options help](https://neovim.io/doc/user/options/#local-options) for 
 - Always add to a group that has has `{ clear = true }` as its second arg so re-sourcing
   the config doesn't add a duplicate copy of the autocmd.
 
-## Keymaps
-### Where to define
-- If specific to an attach hook, define where that attach hook lives.  Examples:
-  - autocmd.lua should contain autocmd's that define keymaps
-  - `[plugin].lua` should contain keymaps specific to `[plugin]`'s attach hooks
-- If executing the keymap should trigger a plugin to be lazily loaded, define in that
-  plugin's `keys =` field to enable lazy.nvim
-  to lazily define them when needed
-- Otherwise, define in keymaps.lua
-- `desc` option field should contain a clear description in its first 33 characters
-  (fzf-lua `keymaps()` constraint)
-
 ## LSPs
 
 ### Adding an LSP
@@ -87,7 +75,7 @@ Community-sourced configurations for various language servers.
 
 To set up a server (copied from its README as of `7ab79bb`):
 
----
+
 
 1. Install a language server, e.g. [pyright](doc/configs.md#pyright)
    ```bash
