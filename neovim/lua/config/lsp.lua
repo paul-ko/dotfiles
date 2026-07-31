@@ -22,7 +22,9 @@ vim.diagnostic.config({
 ------------
 
 -- pyright
+---@type vim.lsp.Config
 vim.lsp.config("pyright", {
+  ---@type lspconfig.settings.pyright
   settings = {
     pyright = {
       -- Using Ruff's import organizer
@@ -40,8 +42,10 @@ vim.lsp.config("pyright", {
 vim.lsp.enable({ "pyright" })
 
 -- https://docs.astral.sh/ruff/editors/setup/#neovim
+---@type vim.lsp.Config
 vim.lsp.config("ruff", {
   init_options = {
+    ---@type lspconfig.settings.ruff
     settings = {
       logLevel = "info", -- This is default; including to have a working stub
     },
@@ -53,5 +57,6 @@ vim.lsp.enable("ruff")
 -- bash --
 ----------
 
+---@type vim.lsp.Config
 vim.lsp.config("bashls", {})
 vim.lsp.enable("bashls")
