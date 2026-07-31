@@ -1,3 +1,5 @@
+-- https://github.com/nvim-tree/nvim-tree.lua/blob/master/README.md
+-- :help nvim-tree-setup and :help nvim-tree-config-default
 return {
   {
     "nvim-tree/nvim-tree.lua",
@@ -36,6 +38,7 @@ return {
         filters = {
           -- true *hides*
           dotfiles = false,
+          custom = { "^\\.git" },
         },
         on_attach = my_on_attach,
       }
