@@ -24,6 +24,10 @@ vim.opt.foldenable = true -- enable folding
 vim.opt.foldlevelstart = 100 -- open most folds by default
 vim.opt.foldmethod = "indent" -- fold based on indent level
 
+-- Opening splits
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
 -- Other
 vim.opt.colorcolumn = "89" -- visual ruler based on black settings
 vim.opt.cursorline = true -- visually highlight current line in active buffer

@@ -66,6 +66,8 @@ See [local-options help](https://neovim.io/doc/user/options/#local-options) for 
   plugin's `keys =` field to enable lazy.nvim
   to lazily define them when needed
 - Otherwise, define in keymaps.lua
+- `desc` option field should contain a clear description in its first 33 characters
+  (fzf-lua `keymaps()` constraint)
 
 ## LSPs
 

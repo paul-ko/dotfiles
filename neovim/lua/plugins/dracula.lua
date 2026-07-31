@@ -1,4 +1,4 @@
--- https://github.com/maxmx03/dracula.nvim/blob/7fadc37/README.md
+-- https://github.com/maxmx03/dracula.nvim/blob/master/README.md
 return {
   {
     "maxmx03/dracula.nvim",
