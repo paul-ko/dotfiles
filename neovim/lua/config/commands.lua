@@ -1,5 +1,13 @@
--- Example below
--- Commands must start with an upper-case letter
+-- User-defined Ex commands and abbreviations
 
--- vim.api.nvim_create_user_command("Vsb", "vert sb <args>", { nargs = "*" })
+-- User-defined commands must start with an upper-case letter
+-- Commands can call locally defined functions
+
+--[[
+local f = function(arg) print(arg) end
+vim.api.nvim_create_user_command("Me", function(opts) f(opts.fargs[1]) end, { nargs = "+" })
+`:Me x` will print x
+]]
+
+-- Abbreviations
 vim.cmd("cnoreabbrev vsb vert sb")
