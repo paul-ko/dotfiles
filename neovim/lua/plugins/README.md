@@ -1,0 +1,2 @@
+- [Plugin spec](https://lazy.folke.io/spec)
+- [Examples](https://lazy.folke.io/spec/examples)
