@@ -1,4 +1,17 @@
 -- https://github.com/ibhagwan/fzf-lua/blob/main/README.md
+local git_pref = "<leader>g"
+local search_pref = "<leader>s"
+local mem_pref = "<leader><leader>"
+local function excmd(cmd)
+  return "<cmd>" .. cmd .. "<cr>"
+end
+local function exlua(lua)
+  return excmd("lua " .. lua)
+end
+local function exfzf(call)
+  return exlua("require('fzf-lua')." .. call)
+end
+
 return {
   {
     "ibhagwan/fzf-lua",
@@ -10,12 +23,17 @@ return {
     opts = {},
     ---@diagnostic enable: missing-fields
     keys = {
-      { "<leader>sf", "<cmd>lua require('fzf-lua').files()<cr>", desc = "fuzzy-find project files" },
-      { "<leader><leader>f", "<cmd>lua require('fzf-lua').files()<cr>", desc = "fuzzy-find project files" },
-      { "<leader>sg", "<cmd>lua require('fzf-lua').live_grep_native()<cr>", desc = "live-grep project files" },
-      { "<leader><leader>g", "<cmd>lua require('fzf-lua').live_grep_native()<cr>", desc = "live-grep project files" },
-      { "<leader>sw", "<cmd>lua require('fzf-lua').grep_cword()<cr>", desc = "grep current word within project" },
-      { "<leader>sW", "<cmd>lua require('fzf-lua').grep_cWORD()<cr>", desc = "grep current WORD within project" },
+      -- Core searches
+      { search_pref .. "f", exfzf("files()"), desc = "fuzzy-find project files" },
+      { mem_pref .. "f", exfzf("files()"), desc = "fuzzy-find project files" },
+      { search_pref .. "g", exfzf("live_grep_native()"), desc = "live-grep project files" },
+      { mem_pref .. "g", exfzf("live_grep_native()"), desc = "live-grep project files" },
+      { search_pref .. "w", exfzf("grep_cword()"), desc = "grep current word within project" },
+      { search_pref .. "W", exfzf("grep_cWORD()"), desc = "grep current WORD within project" },
+
+      -- Git
+      { git_pref .. "l", exfzf("git_commits()"), desc = "fuzzy-find log" },
+      { git_pref .. "c", exfzf("git_bcommits()"), desc = "fuzzy-find commits (buffer)" },
     },
   },
 }
