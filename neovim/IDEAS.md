@@ -1,7 +1,6 @@
 # Things to figure out or do in neovim
 
 ## High priority
-- Lua tutorial
 - Learning to use the help help system more effectively, online and in application
 - FzfLua
   - git_commits, git_bcommits
