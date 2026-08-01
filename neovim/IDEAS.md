@@ -1,24 +1,21 @@
 # Things to figure out or do in neovim
 
-## Discoverability
-- Figure out a good scheme for making keymaps customization easier to find, likely
-  building on `FzfLua.keymap()` and some sort of `desc` naming scheme
-- Similar for custom commands
-- Custom help for key stuff to remember
-
-## Quality
-- Use `opt` instead of `config` in more plugin specs
-- Organize markdown docs better
-
-## Foundation
-- Learning to use the help help system more effectively
-
-## Plugins
-- Review the plugins list in dracula's README config
-- More mini.nvim modules
-
-## Keymaps
+## High priority
+- Lua tutorial
+- Learning to use the help help system more effectively, online and in application
 - FzfLua
   - git_commits, git_bcommits
 - Gitsigns
   - blame, diffthis
+
+## Medium priority
+- Conform instead of neoformat
+- Review the plugins list in dracula's README config
+- More mini.nvim modules
+- See if there's a way
+- Organize markdown docs better
+
+## Low priority
+- Custom help for key stuff to remember
+- Helper to surface my user-defined commands
+- Use `opt` instead of `config` in more plugin specs

@@ -25,6 +25,11 @@ return {
 
       completion = { documentation = { auto_show = true } },
 
+      -- Disable by filetype
+      enabled = function()
+        return not vim.tbl_contains({ "txt", "markdown", "gitcommit" }, vim.bo.filetype)
+      end,
+
       sources = {
         -- Set min_keyword_length to a number to control how many chars must be typed before matches display
         default = function()
