@@ -16,6 +16,6 @@ Keymaps are organized using grouping, where keymaps related to a specific concer
 
 ### Groups
 - `<leader>d`: diagnostics
+- `<leader>f`: nvim-tree [tentative]
 - `<leader>g`: git
 - `<leader>s`: searches
-- `<leader>t`: nvim-tree [tentative]
