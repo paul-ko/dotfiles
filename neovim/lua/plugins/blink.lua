@@ -8,7 +8,6 @@ Useful docs:
 return {
   {
     "saghen/blink.cmp",
-    dependencies = { "rafamadriz/friendly-snippets" },
 
     version = "1.*", -- Pin major version as of setup.
     opts = {
@@ -50,7 +49,7 @@ return {
           if node and vim.tbl_contains(comment_node_types, node:type()) then
             return {}
           end
-          return { "lsp", "path", "snippets" }
+          return { "lsp", "path" }
         end,
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
