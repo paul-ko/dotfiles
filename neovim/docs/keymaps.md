@@ -1,5 +1,32 @@
 # Keymaps
 
+## How to define
+
+### Keystrokes
+```lua
+vim.keymap.set({ "n", "v" }, "k", "gk")
+```
+
+### Lua function (direct call, no args)
+
+### Lua function
+```lua
+exfzf(
+  "grep",
+  function() return { search = vim.fn.expand("<cword>") } end
+)
+```
+
+### Run Ex command
+```lua
+vim.keymap.set(
+  "n",
+  keymap_groups.buffers .. "b",
+  utils.excmd("b#"),
+  { desc = "back to prev buffer (b#, not stack)" }
+)
+```
+
 ## Where to define
 - If specific to an attach hook, define where that attach hook lives.  Examples:
   - autocmd.lua should contain autocmd's that define keymaps

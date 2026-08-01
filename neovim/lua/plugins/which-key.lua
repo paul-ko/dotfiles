@@ -1,5 +1,5 @@
 -- https://github.com/folke/which-key.nvim/blob/main/README.md
-local keymap_groups = require("keymap_groups")
+local groups = require("keymap_groups")
 
 return {
   {
@@ -22,12 +22,12 @@ return {
     config = function()
       local wk = require("which-key")
       wk.add({
-        { keymap_groups.memory, group = "muscle memory" },
-        { keymap_groups.buffer, group = "buffer" },
-        { keymap_groups.diagnostics, group = "diagnostics" },
-        { keymap_groups.files, group = "files" },
-        { keymap_groups.git, group = "git" },
-        { keymap_groups.search, group = "search" },
+        { groups.memory, group = "muscle memory" },
+        { groups.buffers, group = "buffer" },
+        { groups.git, group = "git" },
+        { groups.search, group = "search" },
+        { groups.find, group = "find" },
+        -- groups.create, groups.delete: not registered yet, no keymaps under them
       })
     end,
   },

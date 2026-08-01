@@ -3,6 +3,7 @@
 -- Break up if it grows significantly
 local M = {}
 
+-- This will likely run into issues if `cmd` needs to be passed dynamic text that needs escapes to be lua-safe.
 function M.excmd(cmd)
   return "<cmd>" .. cmd .. "<cr>"
 end

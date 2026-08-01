@@ -19,5 +19,10 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 
 -- Diagnostic navigation — works for any diagnostic source (LSP, nvim-lint, etc.)
 -- so these are global, not gated behind LspAttach.
-vim.keymap.set("n", keymap_groups.diagnostics .. "l", vim.diagnostic.open_float, { desc = "Line diagnostics" })
-vim.keymap.set("n", keymap_groups.diagnostics .. "a", vim.diagnostic.setqflist, { desc = "All diagnostics (quickfix)" })
+-- No dedicated top-level group; `d` now means "delete files/directories".
+-- Line diagnostics is the one actually used day-to-day, so it lives in muscle memory.
+vim.keymap.set("n", keymap_groups.memory .. "d", vim.diagnostic.open_float, { desc = "Line diagnostics" })
+vim.keymap.set("n", keymap_groups.memory .. "D", vim.diagnostic.setqflist, { desc = "All diagnostics (quickfix)" })
+
+-- Buffer navigation and management
+vim.keymap.set("n", keymap_groups.buffers .. "b", utils.excmd("b#"), { desc = "back to prev buffer (b#, not stack)" })
