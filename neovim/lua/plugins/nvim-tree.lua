@@ -44,6 +44,7 @@ return {
       }
       require("nvim-tree").setup(config)
       vim.keymap.set("n", "<leader>te", "<cmd>NvimTreeToggle<cr>")
+      vim.keymap.set("n", "<leader><leader>e", "<cmd>NvimTreeToggle<cr>")
     end,
   },
 }

@@ -11,6 +11,7 @@ vim.api.nvim_create_user_command("Me", function(opts) f(opts.fargs[1]) end, { na
 
 -- Abbreviations
 vim.cmd("cnoreabbrev vsb vert sb")
+vim.cmd("cnoreabbrev halp help helphelp")
 
 vim.api.nvim_create_user_command("Close", function()
   local buf_to_delete = vim.api.nvim_get_current_buf()
