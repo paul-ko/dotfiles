@@ -15,6 +15,7 @@
 
 ## Plugins
 - Review the plugins list in dracula's README config
+- More mini.nvim modules
 
 ## Keymaps
 - FzfLua
