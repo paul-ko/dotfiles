@@ -1,0 +1,61 @@
+# Options in neovim
+
+## Interop
+- `vim.cmd`: call an Ex command; return its output as a string
+  - `vim.cmd(string.format("echo bufnr('%s')", buffer_name))`
+- `vim.fn`: call a Vimscript expression and get its value into lua
+  - `vim.fn.bufnr(vim.api.nvim_buf_get_name(0))`
+
+## Setting options
+### Option overview
+Options can be set at various levels.  Two are considered local:
+
+- buffer: applies to that buffer only
+- window: applies to that window only
+
+The other, naturally, is global.
+
+Each option supports either one or two of these scopes.  No option supports both window
+and buffer, as far as I've seen documented.
+
+There are five different setter functions.  Each of these has different effects on
+different scopes.  These can result in different user experiences, e.g., a setter
+function running before a new tab is created may or may not affect the new tab.
+
+This is all an oversimplification because understanding this in detail would require
+memorizing a massive matrix.
+
+### Principles
+In general, when setting an option, choose between `vim.opt` (`vim.o`) and
+`vim.opt_local`.
+
+- `vim.opt_local`
+  - Use when you want to narrowly scope the option update
+  - Requests local scope. For options with a local scope, this is honored exactly, and
+    never affects the global default. For global-only options, there is no local scope
+    to write to — the call falls back to writing global, the same as `vim.opt`.
+- `vim.opt`
+  - Use when you want to broadly scope the update
+  - Modifies the global scope, and for non-global-only options, the window or buffer
+    scope
+
+Refer to the docs linked below if these don't sound like what you meant.
+
+More specifically:
+- ftplugins should avoid `vim.o` (`vim.opt`); instead, use `vim.opt_local` to scope
+  effects as narrowly as possible.
+  - Similarly, ftplugins should pass `{ buffer = true }` when setting keymaps.
+
+### If things go wrong
+- Check what setter is being called
+- Use `setlocal [config]?`, `setglobal [config]?`, and `set [config]?` to check the
+  current value in different scopes
+  - e.g., `setglobal cursorline?`
+- Use `help '[config]'` to check the variable's supported scope
+  - e.g., `help cursorline`
+- Test
+
+### Documentation
+See [local-options help](https://neovim.io/doc/user/options/#local-options) for details.
+
+
