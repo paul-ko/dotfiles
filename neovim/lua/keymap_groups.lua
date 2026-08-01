@@ -1,12 +1,11 @@
+local keys = require("keys")
 local M = {}
 
-local leader = "<leader>"
-
-M.buffer = leader .. "b"
-M.diagnostics = leader .. "d"
-M.files = leader .. "f"
-M.git = leader .. "g"
-M.memory = leader .. leader
-M.search = leader .. "s"
+M.buffer = keys.leader .. "b"
+M.diagnostics = keys.leader .. "d"
+M.files = keys.leader .. "f"
+M.git = keys.leader .. "g"
+M.memory = keys.leader .. keys.leader
+M.search = keys.leader .. "s"
 
 return M
