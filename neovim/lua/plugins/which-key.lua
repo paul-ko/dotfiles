@@ -17,5 +17,16 @@ return {
         desc = "Buffer-local keymaps (which-key)",
       },
     },
+    config = function()
+      local wk = require("which-key")
+      wk.add({
+        { "<leader><leader>", group = "muscle memory" },
+        { "<leader>b", group = "buffer" },
+        { "<leader>d", group = "diagnostics" },
+        { "<leader>f", group = "files" },
+        { "<leader>g", group = "git" },
+        { "<leader>s", group = "search" },
+      })
+    end,
   },
 }
