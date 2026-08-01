@@ -1,5 +1,11 @@
 # neovim configs
 
+## Interop
+- `vim.cmd`: call an Ex command; return its output as a string
+  - `vim.cmd(string.format("echo bufnr('%s')", buffer_name))`
+- `vim.fn`: call a Vimscript expression and get its value into lua
+  - `vim.fn.bufnr(vim.api.nvim_buf_get_name(0))`
+
 ## Setting options
 ### Option overview
 Options can be set at various levels.  Two are considered local:

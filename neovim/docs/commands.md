@@ -1,17 +1,9 @@
--- User-defined Ex commands and abbreviations
+# Commands
 
--- User-defined commands must start with an upper-case letter
--- Commands can call locally defined functions
+## Examples
+Closes the current buffer and opens a previous one:
 
---[[
-local f = function(arg) print(arg) end
-vim.api.nvim_create_user_command("Me", function(opts) f(opts.fargs[1]) end, { nargs = "+" })
-`:Me x` will print x
-]]
-
--- Abbreviations
-vim.cmd("cnoreabbrev vsb vert sb")
-
+```lua
 vim.api.nvim_create_user_command("Close", function()
   local buf_to_delete = vim.api.nvim_get_current_buf()
   local win = vim.api.nvim_get_current_win()
@@ -29,3 +21,4 @@ vim.api.nvim_create_user_command("Close", function()
 
   vim.api.nvim_buf_delete(buf_to_delete, {})
 end, {})
+```
