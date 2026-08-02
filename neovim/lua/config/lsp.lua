@@ -60,3 +60,11 @@ vim.lsp.enable("ruff")
 ---@type vim.lsp.Config
 vim.lsp.config("bashls", {})
 vim.lsp.enable("bashls")
+
+---------
+-- lua --
+---------
+
+---@type vim.lsp.Config
+vim.lsp.config("lua_ls", {})
+vim.lsp.enable("lua_ls")
