@@ -3,11 +3,11 @@
 ## List
 
 ### High priority
-- Gitsigns
-  - blame, diffthis
-- Learn about highlight groups
+*DONE*
 
 ### Medium priority
+- C^ discoverability
+- Learn about highlight groups
 - Conform instead of neoformat
 - Review the plugins list in dracula's README config
 - More mini.nvim modules

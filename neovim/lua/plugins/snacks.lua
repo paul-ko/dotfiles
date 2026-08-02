@@ -116,13 +116,6 @@ return {
         end,
         desc = "git log",
       },
-      {
-        groups.git .. "d",
-        function()
-          Snacks.picker.git_diff()
-        end,
-        desc = "git diff",
-      },
 
       -- Search (content)
       {
