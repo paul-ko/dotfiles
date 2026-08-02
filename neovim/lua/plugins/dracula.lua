@@ -22,21 +22,21 @@ return {
         },
         transparent = false,
         -- selene: allow(unused_variable)
-        on_colors = function(colors, color)
-          ---@type dracula.palette
-          return {
-            -- override or create new colors
-            -- mycolor = 0xffffff,
-          }
-        end,
-        -- selene: allow(unused_variable)
-        on_highlights = function(colors, color)
-          ---@type dracula.highlights
-          return {
-            ---@type vim.api.keyset.highlight
-            -- Normal = { fg = colors.mycolor },
-          }
-        end,
+        -- on_colors = function(colors, color)
+        --   ---@type dracula.palette
+        --   return {
+        --     -- override or create new colors
+        --     -- mycolor = 0xffffff,
+        --   }
+        -- end,
+        -- -- selene: allow(unused_variable)
+        -- on_highlights = function(colors, color)
+        --   ---@type dracula.highlights
+        --   return {
+        --     ---@type vim.api.keyset.highlight
+        --     -- Normal = { fg = colors.mycolor },
+        --   }
+        -- end,
         plugins = {
           ["bufferline.nvim"] = true,
           ["gitsigns.nvim"] = true,

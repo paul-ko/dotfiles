@@ -3,7 +3,6 @@
 ## List
 
 ### High priority
-- lua completion
 - Snacks
   - Buffers, unsaved only
   - Files and live grep but with filetype/pattern filter applied

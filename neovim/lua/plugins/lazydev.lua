@@ -14,6 +14,9 @@ return {
         -- this opts table is evaluated while lazy.nvim is still collecting specs,
         -- before nvim-lspconfig is actually on the runtimepath.
         { path = vim.fn.stdpath("data") .. "/lazy/nvim-lspconfig/lua/lspconfig", words = { "lspconfig" } },
+        -- snacks.nvim sets the `Snacks` global itself (lua/snacks/init.lua: `_G.Snacks = M`);
+        -- not covered by lazydev's own plugin discovery since that's require()-based.
+        { path = vim.fn.stdpath("data") .. "/lazy/snacks.nvim/lua", words = { "Snacks" } },
       },
     },
   },

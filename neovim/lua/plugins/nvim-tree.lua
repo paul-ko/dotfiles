@@ -6,7 +6,6 @@ return {
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
-    ---@type nvim_tree.config
     config = function()
       local function my_on_attach(bufnr)
         local api = require("nvim-tree.api")
@@ -31,6 +30,7 @@ return {
         vim.keymap.set("n", "<space>", api.node.open.edit, opts("Open"))
       end
 
+      ---@type nvim_tree.config
       local config = {
         view = {
           width = 50,
