@@ -41,6 +41,7 @@ return {
           custom = { "^\\.git$" },
         },
         on_attach = my_on_attach,
+        update_focused_file = { enable = true },
       }
       require("nvim-tree").setup(config)
       vim.keymap.set("n", "<leader>fe", "<cmd>NvimTreeToggle<cr>")
