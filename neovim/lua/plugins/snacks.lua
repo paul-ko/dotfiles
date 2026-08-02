@@ -17,7 +17,16 @@ return {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {
-      picker = {},
+      picker = {
+        sources = {
+          -- `hidden` lives on snacks.picker.explorer.Config (inherited from
+          -- snacks.picker.files.Config), not on the top-level `explorer`
+          -- table below (snacks.explorer.Config) - separate config surfaces.
+          explorer = {
+            hidden = true,
+          },
+        },
+      },
       explorer = {},
     },
     keys = {
@@ -108,11 +117,26 @@ return {
         -- TRIAL: comparing against nvim-tree; if this covers day-to-day use,
         -- retire nvim-tree.lua and the "find directory, reveal in tree"
         -- keymap above in favor of this.
-        groups.find .. "e",
+        -- Uppercase specifically to avoid colliding with nvim-tree.lua's own
+        -- `,fe`/`,,e` (NvimTreeToggle) - see keymap collision investigation.
+        groups.find .. "E",
         function()
           Snacks.picker.explorer()
         end,
         desc = "[trial] snacks explorer",
+      },
+      {
+        -- TRIAL: dirs-only equivalent of the nvim-tree "find directory,
+        -- reveal in tree" keymap above, for the snacks explorer instead.
+        groups.find .. "D",
+        function()
+          Snacks.picker.explorer({
+            transform = function(item)
+              return item.dir == true
+            end,
+          })
+        end,
+        desc = "[trial] snacks explorer, directories only",
       },
 
       -- Git
