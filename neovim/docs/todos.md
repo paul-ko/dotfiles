@@ -4,7 +4,6 @@
 
 ### High priority
 - Snacks
-  - Buffers, unsaved only
   - Files and live grep but with filetype/pattern filter applied
 - nvim-tree keymaps?
 - Gitsigns

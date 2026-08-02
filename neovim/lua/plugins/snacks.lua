@@ -25,6 +25,22 @@ return {
         desc = "Live grep",
       },
 
+      -- Buffers
+      {
+        groups.buffers .. "a",
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = "view all buffers",
+      },
+      {
+        groups.buffers .. "d",
+        function()
+          Snacks.picker.buffers({ modified = true })
+        end,
+        desc = "view dirty buffers",
+      },
+
       -- Find files/directories
       {
         groups.find .. "a",
