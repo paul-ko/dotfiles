@@ -141,6 +141,21 @@ return {
         end,
         desc = "grep current word within project",
       },
+
+      -- Help / reference (no group yet; see fuzzy-future.md)
+      {
+        "<leader>K",
+        function()
+          Snacks.win({
+            file = vim.fn.stdpath("config") .. "/docs/keystrokes.md",
+            ft = "markdown",
+            width = 0.6,
+            height = 0.6,
+            wo = { wrap = true },
+          })
+        end,
+        desc = "Show keystrokes cheat sheet",
+      },
     },
   },
 }
