@@ -6,7 +6,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
     end
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
-    map("n", "gr", vim.lsp.buf.references, "References")
   end,
   desc = "LSP: configure basic keymaps",
 })

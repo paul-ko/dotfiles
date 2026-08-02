@@ -5,15 +5,6 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    opts = {
-      plugins = {
-        presets = {
-          -- shows the built-in <C-w> window commands (split, close, nav, ...)
-          -- when the prefix is pressed and held briefly
-          windows = true,
-        },
-      },
-    },
     keys = {
       {
         "<leader>?",

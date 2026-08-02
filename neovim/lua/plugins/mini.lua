@@ -1,3 +1,5 @@
+local groups = require("keymap_groups")
+
 return {
   {
     "nvim-mini/mini.nvim",
@@ -5,7 +7,7 @@ return {
     config = function()
       local bufremove = require("mini.bufremove")
       bufremove.setup()
-      vim.keymap.set("n", "<leader>bd", bufremove.delete)
+      vim.keymap.set("n", groups.buffers .. "c", bufremove.delete, { desc = "close current buffer" })
     end,
   },
 }

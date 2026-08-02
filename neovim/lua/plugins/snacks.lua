@@ -24,15 +24,30 @@ return {
     opts = {
       picker = {
         sources = {
+          files = { hidden = true },
+          grep = { hidden = true },
+          grep_word = { hidden = true },
           -- `hidden` lives on snacks.picker.explorer.Config (inherited from
           -- snacks.picker.files.Config), not on the top-level `explorer`
           -- table below (snacks.explorer.Config) - separate config surfaces.
           explorer = {
+            -- Disable diagnostics display, since it is misleading in the picker, showing them for files that do not
+            -- have valid diagnostic findings.  I suspect it may be reflecting the rough first-pass treesitter
+            -- diagnostics that display briefly when a buffer is opened, but not the improved lsp diagnostics that those
+            -- are overwritten by in the buffer.  Either way, they're misleading, and even if they were functional I
+            -- don't know if I would want them to display.
+            diagnostics = false,
             hidden = true,
+            ignored = true,
+            exclude = { ".git" },
           },
         },
       },
-      explorer = {},
+      explorer = {
+        hidden = true,
+        ignored = true,
+        exclude = { ".git" },
+      },
     },
     keys = {
       -- Memory keymaps - what I use most frequently.
