@@ -22,6 +22,7 @@ return {
         { groups.git, group = "git" },
         { groups.search, group = "search" },
         { groups.find, group = "find" },
+        { groups.persistence, group = "persistence (sessions)" },
         -- groups.create, groups.delete: not registered yet, no keymaps under them
       })
     end,

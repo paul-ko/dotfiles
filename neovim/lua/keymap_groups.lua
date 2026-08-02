@@ -9,5 +9,6 @@ M.find = keys.leader .. "f"
 M.create = keys.leader .. "c"
 M.delete = keys.leader .. "d"
 M.buffers = keys.leader .. "b"
+M.persistence = keys.leader .. "p"
 
 return M

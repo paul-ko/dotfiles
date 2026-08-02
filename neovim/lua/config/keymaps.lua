@@ -26,3 +26,20 @@ vim.keymap.set("n", keymap_groups.memory .. "D", vim.diagnostic.setqflist, { des
 
 -- Buffer navigation and management
 vim.keymap.set("n", keymap_groups.buffers .. "b", utils.excmd("b#"), { desc = "back to prev buffer (b#, not stack)" })
+
+-- Persistence
+vim.keymap.set("n", keymap_groups.persistence .. "s", function()
+  require("persistence").load()
+end, { desc = "Load session for cwd" })
+
+vim.keymap.set("n", keymap_groups.persistence .. "S", function()
+  require("persistence").select()
+end, { desc = "Select and load a session" })
+
+vim.keymap.set("n", keymap_groups.persistence .. "l", function()
+  require("persistence").load({ last = true })
+end, { desc = "Load last session" })
+
+vim.keymap.set("n", keymap_groups.persistence .. "d", function()
+  require("persistence").stop()
+end, { desc = "Stop persistence (don't save on exit)" })
