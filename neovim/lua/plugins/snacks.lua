@@ -1,4 +1,16 @@
 local groups = require("keymap_groups")
+local utils = require("utils")
+
+--[[
+File (extension) globs used to pre-filter pickers.  These are based on codebases that this config is active in, and will
+need to be updated over time.
+]]
+local config_files_glob = { "*.*config", "*.ini" }
+local doc_files_glob = { "*.md", "*.txt" }
+local structured_files_glob = { "*.csv", "*.json", "*.toml", "*.yaml" }
+local other_non_code = { "LICENSE", "*.lock" }
+local non_code_files_glob =
+  utils.combine_lists(doc_files_glob, structured_files_glob, config_files_glob, other_non_code)
 
 return {
   {
@@ -49,6 +61,13 @@ return {
         end,
         desc = "find files all",
       },
+      {
+        groups.find .. "c",
+        function()
+          Snacks.picker.files({ frecency = true, exclude = non_code_files_glob })
+        end,
+        desc = "find files code",
+      },
 
       -- Git
       {
@@ -73,6 +92,13 @@ return {
           Snacks.picker.grep()
         end,
         desc = "search content all",
+      },
+      {
+        groups.search .. "c",
+        function()
+          Snacks.picker.grep({ exclude = non_code_files_glob })
+        end,
+        desc = "search content code",
       },
 
       -- Word (cursor-based)

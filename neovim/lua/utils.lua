@@ -11,4 +11,13 @@ function M.exlua(lua)
   return M.excmd("lua " .. lua)
 end
 
+function M.combine_lists(...)
+  local out = {}
+  local tbl = { ... }
+  for _, v in ipairs(tbl) do
+    vim.list_extend(out, v)
+  end
+  return out
+end
+
 return M
