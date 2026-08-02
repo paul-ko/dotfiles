@@ -12,6 +12,8 @@ local other_non_code = { "LICENSE", "*.lock" }
 local non_code_files_glob =
   utils.combine_lists(doc_files_glob, structured_files_glob, config_files_glob, other_non_code)
 
+local explorer_hide_globs = { ".git", "__*__", ".venv", "uv.lock" }
+
 return {
   {
     "folke/snacks.nvim",
@@ -39,14 +41,14 @@ return {
             diagnostics = false,
             hidden = true,
             ignored = true,
-            exclude = { ".git" },
+            exclude = explorer_hide_globs,
           },
         },
       },
       explorer = {
         hidden = true,
         ignored = true,
-        exclude = { ".git" },
+        exclude = explorer_hide_globs,
       },
     },
     keys = {
