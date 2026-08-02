@@ -8,6 +8,12 @@ vim.keymap.set("n", keys.leader .. keys.space, utils.excmd("noh"), { desc = "Cle
 
 -- Folding
 vim.keymap.set("n", keys.space, "za") -- use space for folds
+vim.keymap.set(
+  "n",
+  keymap_groups.toggle .. "c",
+  require("comment_fold").toggle,
+  { desc = "Toggle comment-only line folding" }
+)
 
 -- Motion
 vim.keymap.set({ "n", "v" }, "j", "gj") -- move by visual line

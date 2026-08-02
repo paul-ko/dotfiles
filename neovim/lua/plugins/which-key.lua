@@ -23,6 +23,7 @@ return {
         { groups.search, group = "search" },
         { groups.find, group = "find" },
         { groups.persistence, group = "persistence (sessions)" },
+        { groups.toggle, group = "toggle" },
         -- groups.create, groups.delete: not registered yet, no keymaps under them
       })
     end,

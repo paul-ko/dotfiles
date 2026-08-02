@@ -10,5 +10,6 @@ M.create = keys.leader .. "c"
 M.delete = keys.leader .. "d"
 M.buffers = keys.leader .. "b"
 M.persistence = keys.leader .. "p"
+M.toggle = keys.leader .. "t"
 
 return M
