@@ -40,7 +40,9 @@ vim.filetype.add({
   },
 })
 
--- Directory tree; stay out of the way of nvim-tree
+-- Directory tree; snacks.nvim's explorer replaces netrw itself (replace_netrw
+-- defaults to true), but disable it here too since that's already been the
+-- case since before the explorer existed.
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 

@@ -43,7 +43,6 @@ return {
           ["indent-blankline.nvim"] = true,
           ["lazy.nvim"] = true,
           ["nvim-lspconfig"] = true,
-          ["nvim-tree.lua"] = true,
           ["nvim-treesitter"] = true,
         },
       })
@@ -56,7 +55,7 @@ return {
     opts = function()
       return {
         options = {
-          ignore_focus = { "NvimTree" },
+          ignore_focus = { "snacks_picker_list" }, -- snacks explorer's sidebar window (replaced nvim-tree)
           theme = vim.g.colors_name,
           refresh = {
             statusline = 1000,

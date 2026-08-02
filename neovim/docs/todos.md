@@ -3,7 +3,6 @@
 ## List
 
 ### High priority
-- nvim-tree keymaps?
 - Gitsigns
   - blame, diffthis
 - Learn about highlight groups

@@ -15,6 +15,11 @@ local non_code_files_glob =
 return {
   {
     "folke/snacks.nvim",
+    -- Needs to be active from startup, not just on first keypress: the
+    -- explorer's netrw-replacement hook (its BufEnter autocmd, registered
+    -- inside the plugin's own code) has to exist before `nv <dir>` opens
+    -- its directory buffer, or there's nothing to catch that first buffer.
+    lazy = false,
     ---@type snacks.Config
     opts = {
       picker = {
@@ -44,6 +49,13 @@ return {
           Snacks.picker.grep()
         end,
         desc = "Live grep",
+      },
+      {
+        groups.memory .. "e",
+        function()
+          Snacks.picker.explorer()
+        end,
+        desc = "Explorer",
       },
 
       -- Buffers
@@ -78,57 +90,14 @@ return {
         desc = "find files code",
       },
       {
-        groups.find .. "d",
-        function()
-          -- No built-in snacks "directories" source; fd is preferred (matches
-          -- snacks' own internal directory listing) but not required.
-          -- (Not using snacks.picker.source.files.get_fd() here: it's an
-          -- "assert fd is required" helper, not a quiet availability check -
-          -- it notifies an error as a side effect whenever fd is missing,
-          -- even though we have a working fallback.)
-          local fd = vim.fn.executable("fd") == 1 and "fd" or (vim.fn.executable("fdfind") == 1 and "fdfind" or nil)
-          local cmd = fd or "find"
-          local args = fd and { "--type", "d", "--color", "never", "-E", ".git" }
-            or { ".", "-type", "d", "-not", "-path", "*/.git*" }
-          Snacks.picker.pick({
-            -- proc() needs a real ctx (supplied when the picker calls this),
-            -- not one built at config-construction time.
-            finder = function(_, ctx)
-              return require("snacks.picker.source.proc").proc({
-                cmd = cmd,
-                args = args,
-                transform = function(item)
-                  item.file = item.text
-                end,
-              }, ctx)
-            end,
-            format = "file",
-            confirm = function(picker, item)
-              picker:close()
-              if item then
-                require("nvim-tree.api").tree.find_file({ buf = item.file, open = true, focus = true })
-              end
-            end,
-          })
-        end,
-        desc = "find directory, reveal in tree",
-      },
-      {
-        -- TRIAL: comparing against nvim-tree; if this covers day-to-day use,
-        -- retire nvim-tree.lua and the "find directory, reveal in tree"
-        -- keymap above in favor of this.
-        -- Uppercase specifically to avoid colliding with nvim-tree.lua's own
-        -- `,fe`/`,,e` (NvimTreeToggle) - see keymap collision investigation.
-        groups.find .. "E",
+        groups.find .. "e",
         function()
           Snacks.picker.explorer()
         end,
-        desc = "[trial] snacks explorer",
+        desc = "snacks explorer",
       },
       {
-        -- TRIAL: dirs-only equivalent of the nvim-tree "find directory,
-        -- reveal in tree" keymap above, for the snacks explorer instead.
-        groups.find .. "D",
+        groups.find .. "d",
         function()
           Snacks.picker.explorer({
             transform = function(item)
@@ -136,7 +105,7 @@ return {
             end,
           })
         end,
-        desc = "[trial] snacks explorer, directories only",
+        desc = "snacks explorer, directories only",
       },
 
       -- Git

@@ -43,7 +43,7 @@ Keymaps are organized using grouping, where keymaps related to a specific concer
 
 ### Groups
 - `<leader>d`: diagnostics
-- `<leader>f`: nvim-tree [tentative]
+- `<leader>f`: find files/directories
 - `<leader>g`: git
 - `<leader>s`: searches
 - `<leader><leader>`: muscle memory
