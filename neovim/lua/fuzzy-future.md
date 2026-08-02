@@ -59,3 +59,15 @@ But I think first I want to switch to snacks:
   - <leader><leader>f: find files (alias of sfa)
   - <leader><leader>g: live grep, code only (alias of scc)
   ```
+
+
+g: git - interact with git
+s: search - search for content in repo
+f: find files / directories
+c: create files / directories
+d: delete files / directories
+b: buffer interactions (delete, switch, maybe list)
+
+Diagnostics doesn't have a great home - but I like it as a muscle memory.  I only really use the current-line one so far.  I could perhaps eventually put that under e for engineering if more engineering-related stuff appear.  c for could have been great, but c is create (could move that to add).
+
+

@@ -22,7 +22,7 @@ To set up a server (copied from its README as of `7ab79bb`):
    ```bash
    npm i -g pyright
    ```
-2. Enable its config in your init.lua ([:help lsp-quickstart](https://neovim.io/doc/user/lsp.html#lsp-quickstart)).
+2. Enable its config in lsp.lua ([:help lsp-quickstart](https://neovim.io/doc/user/lsp.html#lsp-quickstart)).
    ```lua
    vim.lsp.enable('pyright')
    ```
