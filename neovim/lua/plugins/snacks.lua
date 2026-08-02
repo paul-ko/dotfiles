@@ -13,7 +13,7 @@ return {
       {
         groups.memory .. "f",
         function()
-          Snacks.picker.files({ frecency = true })
+          Snacks.picker.files({ frecency = true, hidden = true })
         end,
         desc = "Search files all",
       },

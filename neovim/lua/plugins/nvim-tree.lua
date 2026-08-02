@@ -38,7 +38,7 @@ return {
         filters = {
           -- true *hides*
           dotfiles = false,
-          custom = { "^\\.git" },
+          custom = { "^\\.git$" },
         },
         on_attach = my_on_attach,
       }
