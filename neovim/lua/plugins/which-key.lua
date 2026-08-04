@@ -24,7 +24,8 @@ return {
         { groups.find, group = "find" },
         { groups.persistence, group = "persistence (sessions)" },
         { groups.toggle, group = "toggle" },
-        -- groups.create, groups.delete: not registered yet, no keymaps under them
+        { groups.code, group = "code" },
+        -- groups.delete: not registered yet, no keymaps under it
       })
     end,
   },

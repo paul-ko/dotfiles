@@ -1,11 +1,47 @@
+local groups = require("keymap_groups")
+
+-- Ruff exposes import sorting as the `source.organizeImports` code action
+-- (rule I001), separate from `textDocument/formatting` (`ruff format`) -
+-- neither `vim.lsp.buf.format()` nor `ruff format` touches import order.
+-- Ruff's code actions come back unresolved (no `edit`), so a
+-- `codeAction/resolve` round-trip is required to get an applicable edit.
+local function ruff_organize_imports(bufnr)
+  local client = vim.lsp.get_clients({ bufnr = bufnr, name = "ruff" })[1]
+  if client == nil then
+    return
+  end
+  local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
+  ---@diagnostic disable-next-line: inject-field
+  params.context = { only = { "source.organizeImports" }, diagnostics = {} }
+  local response = client:request_sync("textDocument/codeAction", params, 1000, bufnr)
+  for _, action in ipairs(response and response.result or {}) do
+    if action.edit == nil then
+      local resolved = client:request_sync("codeAction/resolve", action, 1000, bufnr)
+      action = resolved and resolved.result or action
+    end
+    if action.edit ~= nil then
+      vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+    end
+  end
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp_attach_add_keymaps", { clear = true }),
   callback = function(args)
     local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
     local map = function(mode, lhs, rhs, desc)
       vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
     end
     map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+    if client ~= nil and client:supports_method("textDocument/formatting", bufnr) then
+      map("n", groups.code .. "f", function()
+        if client.name == "ruff" then
+          ruff_organize_imports(bufnr)
+        end
+        vim.lsp.buf.format({ bufnr = bufnr, async = true })
+      end, "Format buffer via LSP")
+    end
   end,
   desc = "LSP: configure basic keymaps",
 })
@@ -24,6 +60,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
   desc = "LSP: Disable hover capability from Ruff (to make way for pyright's)",
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("format_python_on_save", { clear = true }),
+  pattern = "*.py",
+  callback = function(args)
+    ruff_organize_imports(args.buf)
+    vim.lsp.buf.format({
+      bufnr = args.buf,
+      async = false,
+      filter = function(client)
+        return client.name == "ruff"
+      end,
+    })
+  end,
+  desc = "LSP: organize imports and format Python buffers via Ruff on save",
 })
 
 vim.api.nvim_create_autocmd("User", {
