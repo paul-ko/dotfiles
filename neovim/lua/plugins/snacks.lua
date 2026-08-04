@@ -56,9 +56,9 @@ return {
       {
         groups.memory .. "f",
         function()
-          Snacks.picker.files({ frecency = true, hidden = true })
+          Snacks.picker.files({ frecency = true, hidden = true, exclude = non_code_files_glob })
         end,
-        desc = "Search files all",
+        desc = "Search code files",
       },
       {
         groups.memory .. "g",
@@ -77,11 +77,11 @@ return {
 
       -- Buffers
       {
-        groups.buffers .. "a",
+        groups.buffers .. "l",
         function()
           Snacks.picker.buffers()
         end,
-        desc = "view all buffers",
+        desc = "list all buffers",
       },
       {
         groups.buffers .. "d",
