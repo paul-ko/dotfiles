@@ -49,14 +49,14 @@ Keymaps are organized using grouping, where keymaps related to a specific concer
 - `<leader>c`: code (LSP actions)
 - `<leader>d`: delete files/directories (reserved, unused so far)
 - `<leader>f`: fuzzy-find files, by category (see below)
-- `<leader>g`: git
+- `<leader>g`: live-grep file content, by category (see below)
+- `<leader>G`: git
 - `<leader>p`: persistence (sessions)
-- `<leader>s`: live-grep file content, by category (see below)
 - `<leader>t`: toggle
 - `<leader>w`: search the word under the cursor, by category (see below)
 - `<leader><leader>`: muscle memory
 
-The `f`/`s`/`w` groups share a consistent category taxonomy as their second
+The `f`/`g`/`w` groups share a consistent category taxonomy as their second
 character, defined in `lua/file_categories.lua`:
 - `C`: config files
 - `d`: docs
@@ -66,4 +66,4 @@ character, defined in `lua/file_categories.lua`:
 - `a`: all files, unfiltered
 
 e.g. `,fd` fuzzy-finds doc files, `,wC` searches for the word under the cursor in
-config files.
+config files, `,gs` live-greps structured files.

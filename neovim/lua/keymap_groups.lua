@@ -3,8 +3,8 @@ local M = {}
 
 M.memory = keys.leader .. keys.leader
 
-M.git = keys.leader .. "g"
-M.search = keys.leader .. "s"
+M.git = keys.leader .. "G"
+M.search = keys.leader .. "g"
 M.find = keys.leader .. "f"
 M.word = keys.leader .. "w"
 M.code = keys.leader .. "c"
