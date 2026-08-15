@@ -22,6 +22,7 @@ return {
         { groups.git, group = "git" },
         { groups.search, group = "search" },
         { groups.find, group = "find" },
+        { groups.word, group = "search word under cursor" },
         { groups.persistence, group = "persistence (sessions)" },
         { groups.toggle, group = "toggle" },
         { groups.code, group = "code" },

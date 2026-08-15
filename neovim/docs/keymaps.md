@@ -11,10 +11,13 @@ vim.keymap.set({ "n", "v" }, "k", "gk")
 
 ### Lua function
 ```lua
-exfzf(
-  "grep",
-  function() return { search = vim.fn.expand("<cword>") } end
-)
+{
+  groups.word .. "a",
+  function()
+    return Snacks.picker.grep_word()
+  end,
+  desc = "word: all",
+}
 ```
 
 ### Run Ex command
@@ -42,8 +45,25 @@ vim.keymap.set(
 Keymaps are organized using grouping, where keymaps related to a specific concern share the same starting character.  This improves discoverability, particularly with which-key installed.  <!-- The grouping `<leader>[group][key]`, where `[group]` is a single character identifying the  -->
 
 ### Groups
-- `<leader>d`: diagnostics
-- `<leader>f`: find files/directories
+- `<leader>b`: buffer management
+- `<leader>c`: code (LSP actions)
+- `<leader>d`: delete files/directories (reserved, unused so far)
+- `<leader>f`: fuzzy-find files, by category (see below)
 - `<leader>g`: git
-- `<leader>s`: searches
+- `<leader>p`: persistence (sessions)
+- `<leader>s`: live-grep file content, by category (see below)
+- `<leader>t`: toggle
+- `<leader>w`: search the word under the cursor, by category (see below)
 - `<leader><leader>`: muscle memory
+
+The `f`/`s`/`w` groups share a consistent category taxonomy as their second
+character, defined in `lua/file_categories.lua`:
+- `C`: config files
+- `d`: docs
+- `s`: structured files (csv/json/toml/yaml)
+- `u`: other/uncategorized (e.g. `LICENSE`, lockfiles)
+- `c`: code (everything not matching another category)
+- `a`: all files, unfiltered
+
+e.g. `,fd` fuzzy-finds doc files, `,wC` searches for the word under the cursor in
+config files.

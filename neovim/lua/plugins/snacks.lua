@@ -1,18 +1,170 @@
 local groups = require("keymap_groups")
-local utils = require("utils")
-
---[[
-File (extension) globs used to pre-filter pickers.  These are based on codebases that this config is active in, and will
-need to be updated over time.
-]]
-local config_files_glob = { "*.*config", "*.ini" }
-local doc_files_glob = { "*.md", "*.txt" }
-local structured_files_glob = { "*.csv", "*.json", "*.toml", "*.yaml" }
-local other_non_code = { "LICENSE", "*.lock" }
-local non_code_files_glob =
-  utils.combine_lists(doc_files_glob, structured_files_glob, config_files_glob, other_non_code)
+local file_categories = require("file_categories")
 
 local explorer_hide_globs = { ".git", "__*__", ".venv", "uv.lock" }
+local code_exclude_globs = file_categories.code_exclude_globs()
+
+--[[
+Builds the `,f` / `,s` / `,w` category matrix: each of find/search/word gets one
+leaf per file category (config/docs/structured/other), plus `c` (code, everything
+that isn't a known category) and `a` (all, unfiltered).
+]]
+local function matrix_keys()
+  local keys = {}
+
+  local function code_files()
+    return Snacks.picker.files({ frecency = true, exclude = code_exclude_globs })
+  end
+  local function all_files()
+    return Snacks.picker.files({ frecency = true })
+  end
+  local function code_grep()
+    return Snacks.picker.grep({ exclude = code_exclude_globs })
+  end
+  local function all_grep()
+    return Snacks.picker.grep()
+  end
+  local function code_word()
+    return Snacks.picker.grep_word({ args = { "--word-regexp" }, exclude = code_exclude_globs })
+  end
+  local function all_word()
+    return Snacks.picker.grep_word()
+  end
+
+  local groups_spec = {
+    {
+      prefix = groups.find,
+      label = "find files",
+      all = all_files,
+      code = code_files,
+      category = function(category)
+        if not file_categories.any_files(category.globs) then
+          vim.notify("No " .. category.label .. " files found", vim.log.levels.INFO)
+          return
+        end
+        return Snacks.picker.files({
+          frecency = true,
+          cmd = "rg",
+          args = file_categories.include_args(category.globs),
+        })
+      end,
+    },
+    {
+      prefix = groups.search,
+      label = "grep",
+      all = all_grep,
+      code = code_grep,
+      category = function(category)
+        return Snacks.picker.grep({ args = file_categories.include_args(category.globs) })
+      end,
+    },
+    {
+      prefix = groups.word,
+      label = "word",
+      all = all_word,
+      code = code_word,
+      category = function(category)
+        local args = { "--word-regexp" }
+        vim.list_extend(args, file_categories.include_args(category.globs))
+        return Snacks.picker.grep_word({ args = args })
+      end,
+    },
+  }
+
+  for _, spec in ipairs(groups_spec) do
+    table.insert(keys, { spec.prefix .. "a", spec.all, desc = spec.label .. ": all" })
+    table.insert(keys, { spec.prefix .. "c", spec.code, desc = spec.label .. ": code" })
+    for _, category in ipairs(file_categories.categories) do
+      table.insert(keys, {
+        spec.prefix .. category.letter,
+        function()
+          return spec.category(category)
+        end,
+        desc = spec.label .. ": " .. category.label,
+      })
+    end
+  end
+
+  return keys
+end
+
+local static_keys = {
+  -- Memory keymaps - what I use most frequently.
+  {
+    groups.memory .. "f",
+    function()
+      Snacks.picker.files({ frecency = true, exclude = code_exclude_globs })
+    end,
+    desc = "Search code files",
+  },
+  {
+    groups.memory .. "g",
+    function()
+      Snacks.picker.grep()
+    end,
+    desc = "Live grep",
+  },
+  {
+    groups.memory .. "e",
+    function()
+      Snacks.picker.explorer()
+    end,
+    desc = "Explorer",
+  },
+
+  -- Buffers
+  {
+    groups.buffers .. "l",
+    function()
+      Snacks.picker.buffers()
+    end,
+    desc = "list all buffers",
+  },
+  {
+    groups.buffers .. "d",
+    function()
+      Snacks.picker.buffers({ modified = true })
+    end,
+    desc = "view dirty buffers",
+  },
+
+  -- Find files/directories
+  {
+    groups.find .. "e",
+    function()
+      Snacks.picker.explorer()
+    end,
+    desc = "snacks explorer",
+  },
+
+  -- Git
+  {
+    groups.git .. "l",
+    function()
+      Snacks.picker.git_log()
+    end,
+    desc = "git log",
+  },
+
+  -- Help / reference (no group yet; see fuzzy-future.md)
+  {
+    "<leader>K",
+    function()
+      Snacks.win({
+        file = vim.fn.stdpath("config") .. "/docs/keystrokes.md",
+        ft = "markdown",
+        width = 0.6,
+        height = 0.6,
+        wo = { wrap = true },
+      })
+    end,
+    desc = "Show keystrokes cheat sheet",
+  },
+}
+
+local plugin_keys = {}
+vim.list_extend(plugin_keys, static_keys)
+vim.list_extend(plugin_keys, matrix_keys())
 
 return {
   {
@@ -51,128 +203,6 @@ return {
         exclude = explorer_hide_globs,
       },
     },
-    keys = {
-      -- Memory keymaps - what I use most frequently.
-      {
-        groups.memory .. "f",
-        function()
-          Snacks.picker.files({ frecency = true, hidden = true, exclude = non_code_files_glob })
-        end,
-        desc = "Search code files",
-      },
-      {
-        groups.memory .. "g",
-        function()
-          Snacks.picker.grep()
-        end,
-        desc = "Live grep",
-      },
-      {
-        groups.memory .. "e",
-        function()
-          Snacks.picker.explorer()
-        end,
-        desc = "Explorer",
-      },
-
-      -- Buffers
-      {
-        groups.buffers .. "l",
-        function()
-          Snacks.picker.buffers()
-        end,
-        desc = "list all buffers",
-      },
-      {
-        groups.buffers .. "d",
-        function()
-          Snacks.picker.buffers({ modified = true })
-        end,
-        desc = "view dirty buffers",
-      },
-
-      -- Find files/directories
-      {
-        groups.find .. "a",
-        function()
-          Snacks.picker.files({ frecency = true })
-        end,
-        desc = "find files all",
-      },
-      {
-        groups.find .. "c",
-        function()
-          Snacks.picker.files({ frecency = true, exclude = non_code_files_glob })
-        end,
-        desc = "find files code",
-      },
-      {
-        groups.find .. "e",
-        function()
-          Snacks.picker.explorer()
-        end,
-        desc = "snacks explorer",
-      },
-      {
-        groups.find .. "d",
-        function()
-          Snacks.picker.explorer({
-            transform = function(item)
-              return item.dir == true
-            end,
-          })
-        end,
-        desc = "snacks explorer, directories only",
-      },
-
-      -- Git
-      {
-        groups.git .. "l",
-        function()
-          Snacks.picker.git_log()
-        end,
-        desc = "git log",
-      },
-
-      -- Search (content)
-      {
-        groups.search .. "a",
-        function()
-          Snacks.picker.grep()
-        end,
-        desc = "search content all",
-      },
-      {
-        groups.search .. "c",
-        function()
-          Snacks.picker.grep({ exclude = non_code_files_glob })
-        end,
-        desc = "search content code",
-      },
-
-      -- Word (cursor-based)
-      {
-        groups.search .. "w",
-        function()
-          Snacks.picker.grep_word()
-        end,
-        desc = "grep current word within project",
-      },
-
-      -- Help / reference (no group yet; see fuzzy-future.md)
-      {
-        "<leader>K",
-        function()
-          Snacks.win({
-            file = vim.fn.stdpath("config") .. "/docs/keystrokes.md",
-            ft = "markdown",
-            width = 0.6,
-            height = 0.6,
-            wo = { wrap = true },
-          })
-        end,
-        desc = "Show keystrokes cheat sheet",
-      },
-    },
+    keys = plugin_keys,
   },
 }

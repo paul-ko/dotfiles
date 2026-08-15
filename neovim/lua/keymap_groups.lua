@@ -6,6 +6,7 @@ M.memory = keys.leader .. keys.leader
 M.git = keys.leader .. "g"
 M.search = keys.leader .. "s"
 M.find = keys.leader .. "f"
+M.word = keys.leader .. "w"
 M.code = keys.leader .. "c"
 M.delete = keys.leader .. "d"
 M.buffers = keys.leader .. "b"
